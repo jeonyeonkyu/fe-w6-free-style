@@ -1,0 +1,82 @@
+body {
+  background: #f3f3f3;
+}
+
+.entirety {
+  width: 828px;
+  margin: 100px auto;
+  border: 1px solid rgb(202, 202, 202);
+  background-color: #fff;
+  box-shadow: 0px 0px 10px 1px rgb(202, 202, 202);
+  > * {
+    padding: 15px;
+  }
+}
+
+header {
+  display: flex;
+  height: 30px;
+  font-weight: 700;
+  :nth-child(1) {
+    width: 10%;
+    border-right: 1px solid gray;
+    font-size: 20px;
+  }
+  :nth-child(2) {
+    width: 75%;
+    font-size: 20px;
+  }
+  :nth-child(3) {
+    width: 10%;
+    font-size: 20px;
+  }
+  :nth-child(4) {
+    width: 5%;
+    font-size: 20px;
+  }
+}
+
+.title {
+  display: flex;
+  height: 300px;
+  &__info {
+    width: 200px;
+    &--code {
+      font-size: 14px;
+      font-weight: 700;
+    }
+    &--name {
+      margin-top: 10px;
+      font-size: 18px;
+    }
+    &--price {
+      margin-top: 20px;
+      font-size: 26px;
+    }
+    &--gap {
+      margin-top: 30px;
+    }
+  }
+
+  &__line_chart {
+    width: 100%;
+  }
+}
+
+.box_chart {
+  &__term {
+    display: flex;
+  }
+  &__chart {
+    height: 400px;
+  }
+}
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  &__head {
+    text-align: left;
+    border-bottom: 1px solid #000;
+  }
+}
