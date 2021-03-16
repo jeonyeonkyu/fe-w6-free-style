@@ -39,6 +39,7 @@ header {
 .title {
   display: flex;
   height: 300px;
+  border-top: 5px solid rgb(112, 112, 112);
   &__info {
     width: 200px;
     &--code {
@@ -64,6 +65,7 @@ header {
 }
 
 .box_chart {
+  border-top: 5px solid rgb(200, 200, 200);
   &__term {
     display: flex;
   }
@@ -72,12 +74,34 @@ header {
   }
 }
 
+.daily_price {
+  border-top: 5px solid rgb(200, 200, 200);
+}
+
 .table {
-  border-collapse: collapse;
   width: 100%;
+  border-collapse: collapse;
+  text-align-last: end;
+  border-bottom: 2px solid #000;
   &__head {
     text-align: left;
-    border-bottom: 1px solid #000;
+    border-bottom: 2px solid #000;
+    > th {
+      font-size: 20px;
+    }
+  }
+  &__body {
+    > tr {
+      height: 30px;
+      border-bottom: 1px solid lightgray;
+      > td {
+        font-weight: 600;
+        font-size: 20px;
+      }
+      :first-child {
+        font-weight: 400;
+      }
+    }
   }
 }
 
