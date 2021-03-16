@@ -8,7 +8,7 @@ class DailyPriceView {
     this.$receiveButton = $receiveButton;
     this.$tableBody = $tableBody;
     this.tickerCode = '';
-    this.bizDate = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+    this.bizDate = '';
     this.scrollTimer = null;
     this.initEvent();
   }
@@ -20,6 +20,7 @@ class DailyPriceView {
 
   async enterCodeAndClickHandler() {
     this.tickerCode = this.$receiveInput.value;
+    this.bizDate = new Date().toISOString().slice(0, 10).replace(/-/g, '');
     const dailyPriceArray = await getResponseJsonUrl(`${this.url}&code=${this.tickerCode}&bizdate=${this.bizDate}`);
     this.updateLastDate(dailyPriceArray);
     this.$tableBody.innerHTML = this.makeTemplate(dailyPriceArray);
