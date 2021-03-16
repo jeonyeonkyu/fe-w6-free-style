@@ -1,24 +1,7 @@
-// const _ = {
-//   $: (selector, base = document.body.children) => {
-//     const array = [];
-//     const selectNode = (attr, base) => {
-//       for (let node of base) {
-//         if (node[attr] === selector) {
-//           array.push(node.children)
-//         }
-//       }
-//       console.dir(array)
-//     }
-//     switch (selector[0]) {
-//       case '.':
-//         return selectNode('className', base);
-//       case '#':
-//         return selectNode('id', base);
-//       default:
-//         return selectNode('tagName', base);
-//     }
-//   }
-// }
+const _ = {
+  $: (selector, base = document) => base.querySelector(selector),
+  $All: (selector, base = document) => base.querySelectorAll(selector),
+  on: (selector, eventName, callback) => selector.addEventListener(eventName, callback),
+}
 
-// console.log(_.$('DIV'));
-//일단 보류..
+export default _;
