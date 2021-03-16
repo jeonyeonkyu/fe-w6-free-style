@@ -2,11 +2,11 @@ import _ from './util.js';
 import { delay } from './serviceUtil.js';
 
 class TitleView {
-  constructor({ url, $receiveInput, $receiveButton, $code, $name, $price, $gap }) {
+  constructor({ url, $receiveInput, $receiveButton, $tickerCode, $name, $price, $gap }) {
     this.url = url;
     this.$receiveInput = $receiveInput;
     this.$receiveButton = $receiveButton;
-    this.$code = $code;
+    this.$tickerCode = $tickerCode;
     this.$name = $name;
     this.$price = $price;
     this.$gap = $gap;
@@ -38,7 +38,7 @@ class TitleView {
 
   renderTitle({ nm, nv, pcv, mt }) {
     this.$name.innerHTML = nm;
-    this.$code.innerHTML = mt === '1' ? 'KOSPI' : 'KOSDAQ';
+    this.$tickerCode.innerHTML = mt === '1' ? 'KOSPI' : 'KOSDAQ';
     this.$price.innerHTML = nv.toLocaleString('ko-KR');
     const comparison = nv - pcv;
     const color = comparison >= 0 ? 'red' : 'blue';
