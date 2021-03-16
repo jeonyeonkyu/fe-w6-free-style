@@ -29,26 +29,16 @@ const load = () => {
 
   const dailyPriceView = new DailyPriceView(daily);
 
+  // var url = 'https://fchart.stock.naver.com/siseJson.nhn?symbol=035720&requestType=1&startTime=20210103&endTime=20210208&timeframe=day#'; //A local page
+  // function aa(url, callback) {
+  //   const xhr = new XMLHttpRequest();
+  //   xhr.onreadystatechange = () => { if (xhr.readyState === 4) callback(eval(xhr.response)) };
+  //   xhr.open('GET', url, true);
+  //   xhr.send('');
+  // }
+
+  // const c = (data) => { console.log(data) }
+  // aa(url, c)
 }
 
 window.addEventListener('DOMContentLoaded', load);
-
-// var url = 'https://fchart.stock.naver.com/siseJson.nhn?symbol=035720&requestType=1&startTime=20210103&endTime=20210208&timeframe=day#'; //A local page
-// function load(url, callback) {
-//   var xhr = new XMLHttpRequest();
-//   xhr.onreadystatechange = function () {
-//     if (xhr.readyState === 4) {
-//       callback(xhr.response);
-//     }
-//   }
-//   xhr.open('GET', url, true);
-//   xhr.send('');
-// }
-
-
-// const c = (data) => { console.log(data) }
-
-// load(url, c)
-
-
-
