@@ -17,20 +17,20 @@ header {
   display: flex;
   height: 30px;
   font-weight: 700;
-  :nth-child(1) {
+  > :nth-child(1) {
     width: 10%;
     border-right: 1px solid gray;
     font-size: 20px;
   }
-  :nth-child(2) {
-    width: 75%;
+  > :nth-child(2) {
+    width: 55%;
     font-size: 20px;
   }
-  :nth-child(3) {
-    width: 10%;
+  > :nth-child(3) {
+    width: 30%;
     font-size: 20px;
   }
-  :nth-child(4) {
+  > :nth-child(4) {
     width: 5%;
     font-size: 20px;
   }
@@ -79,4 +79,11 @@ header {
     text-align: left;
     border-bottom: 1px solid #000;
   }
+}
+
+.red {
+  color: red;
+}
+.blue {
+  color: blue;
 }
