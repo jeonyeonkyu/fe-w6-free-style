@@ -1,7 +1,7 @@
 import _ from './util.js';
-import fetch from 'cross-fetch';
 import TitleView from './TitleView.js';
 import DailyPriceView from './DailyPriceView.js';
+import CandleChartView from './CandleChart/CandleChartView.js';
 
 const load = () => {
   const receive = {
@@ -29,7 +29,7 @@ const load = () => {
 
   const dailyPriceView = new DailyPriceView(daily);
 
-  // var url = 'https://fchart.stock.naver.com/siseJson.nhn?symbol=035720&requestType=1&startTime=20210103&endTime=20210208&timeframe=day#'; //A local page
+  // var url = 'https://fchart.stock.naver.com/siseJson.nhn?symbol=035720&requestType=1&startTime=20210103&endTime=20210208&timeframe=day'; //A local page
   // function aa(url, callback) {
   //   const xhr = new XMLHttpRequest();
   //   xhr.onreadystatechange = () => { if (xhr.readyState === 4) callback(eval(xhr.response)) };
@@ -39,6 +39,13 @@ const load = () => {
 
   // const c = (data) => { console.log(data) }
   // aa(url, c)
+
+  const candle = {
+    url: 'https://fchart.stock.naver.com/siseJson.nhn',
+    $boxChart: _.$('.box_chart__chart'),
+  }
+
+  const candleChartView = new CandleChartView(candle);
 }
 
 window.addEventListener('DOMContentLoaded', load);

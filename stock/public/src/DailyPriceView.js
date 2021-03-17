@@ -27,6 +27,7 @@ class DailyPriceView {
   }
 
   infinityScrollHandler() {
+    if (!this.tickerCode) return;
     if (this.scrollTimer) clearTimeout(this.scrollTimer);
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
       this.scrollTimer = setTimeout(async function () {
