@@ -2,12 +2,12 @@ import _ from '../util.js'
 import * as echarts from 'echarts';
 import { splitData, xhrRequest } from './candleChartUtil.js';
 import { basicOption, makeXAxis, makeSeries } from './candleChartOption.js';
+import { attrMutationObserver } from '../serviceUtil.js';
 
 class CandleChartView {
-  constructor({ url, $receiveInput, $receiveButton, $boxChartTerm, $boxChart, today }) {
+  constructor({ url, $stockInput, $boxChartTerm, $boxChart, today }) {
     this.url = url;
-    this.$receiveInput = $receiveInput;
-    this.$receiveButton = $receiveButton;
+    this.$stockInput = $stockInput
     this.$boxChartTerm = $boxChartTerm;
     this.$boxChart = $boxChart;
     this.today = today;
@@ -15,19 +15,21 @@ class CandleChartView {
   }
 
   init() {
+    attrMutationObserver(this.$stockInput, (mutations) => {
+      this.radioBoxOriginalStateHandler();
+      this.renderChart(mutations[0].target.dataset.stockCode.trim(), 'day');
+    })
     this.initEvent();
   }
 
   initEvent() {
-    _.on(this.$receiveButton, 'click', this.radioBoxOriginalStateHandler.bind(this));
-    _.on(this.$receiveButton, 'click', this.renderChart.bind(this, this.$receiveInput.value, 'day'));
     _.on(this.$boxChartTerm, 'click', this.changeRadioButtonHandler.bind(this));
   }
 
   changeRadioButtonHandler({ target }) {
     if (target.tagName !== 'LABEL') return;
     target.previousElementSibling.checked = 'checked';
-    this.renderChart(this.$receiveInput.value, target.id);
+    this.renderChart(this.$stockInput.dataset.stockCode.trim(), target.id);
   }
 
   radioBoxOriginalStateHandler() {
