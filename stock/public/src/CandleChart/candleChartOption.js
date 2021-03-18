@@ -3,6 +3,10 @@ import { calculateMA } from './candleChartUtil.js';
 const color = {
   up: '#EE3739',
   down: '#0A7DF2',
+  day5: '#00C50D',
+  day20: '#FF333A',
+  day60: '#F48416',
+  day120: '#BB69FF'
 }
 
 const basicOption = {
@@ -23,7 +27,7 @@ const basicOption = {
     textStyle: {
       color: '#000'
     },
-    position: function (pos, params, el, elRect, size) {
+    position(pos, params, el, elRect, size) {
       const obj = { top: 10 };
       obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 30;
       return obj;
@@ -98,7 +102,7 @@ const basicOption = {
     {
       type: 'inside',
       xAxisIndex: [0, 1],
-      start: 98,
+      start: 97,
       end: 100
     },
     {
@@ -106,7 +110,7 @@ const basicOption = {
       xAxisIndex: [0, 1],
       type: 'slider',
       top: '85%',
-      start: 98,
+      start: 97,
       end: 100
     }
   ],
@@ -157,46 +161,62 @@ function makeSeries(data) {
         color0: color.down,
         borderColor: null,
         borderColor0: null
+      },
+      tooltip: {
+        formatter: function (param) {
+          param = param[0];
+          return [
+            'Date: ' + param.name + '<hr size=1 style="margin: 3px 0">',
+            'Open: ' + param.data[0] + '<br/>',
+            'Close: ' + param.data[1] + '<br/>',
+            'Lowest: ' + param.data[2] + '<br/>',
+            'Highest: ' + param.data[3] + '<br/>'
+          ].join('');
+        }
       }
     },
     {
       name: '5일',
       type: 'line',
+      symbol: 'none',
       data: calculateMA(5, data),
-      color: '#00C50D',
+      color: color.day5,
       smooth: true,
       lineStyle: {
-        opacity: 0.5
+        opacity: 0.4
       }
     },
     {
       name: '20일',
       type: 'line',
+      symbol: 'none',
       data: calculateMA(20, data),
-      color: '#FF333A',
+      color: color.day20,
       smooth: true,
       lineStyle: {
-        opacity: 0.5
+        opacity: 0.4
       }
     },
     {
       name: '60일',
       type: 'line',
+      symbol: 'none',
       data: calculateMA(60, data),
-      color: '#F48416',
+      color: color.day60,
       smooth: true,
       lineStyle: {
-        opacity: 0.5
+        opacity: 0.4
       }
     },
     {
       name: '120일',
       type: 'line',
+      symbol: 'none',
       data: calculateMA(120, data),
-      color: '#BB69FF',
+      color: color.day120,
       smooth: true,
       lineStyle: {
-        opacity: 0.5
+        opacity: 0.4
       }
     },
     {
@@ -209,14 +229,4 @@ function makeSeries(data) {
   ]
 }
 
-const dispatchActionOption = {
-  type: 'brush',
-  areas: [
-    {
-      brushType: 'lineX',
-      coordRange: ['2016-06-02', '2016-06-20'],
-      xAxisIndex: 0
-    }
-  ]
-}
-export { basicOption, makeXAxis, makeSeries, dispatchActionOption };
+export { basicOption, makeXAxis, makeSeries };
