@@ -68,6 +68,20 @@ header {
   border-top: 5px solid rgb(200, 200, 200);
   &__term {
     display: flex;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #000;
+    > li {
+      > label {
+        padding: 5px 10px;
+        margin: 0 10px 0 0;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      > input[type="radio"]:checked + label {
+        background: #445f9a;
+        color: #fff;
+      }
+    }
   }
   &__chart {
     height: 500px;
