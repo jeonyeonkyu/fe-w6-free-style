@@ -2,12 +2,13 @@ import _ from './util.js';
 import { getResponseJsonUrl } from './serviceUtil.js';
 
 class DailyPriceView {
-  constructor({ url, $receiveInput, $receiveButton, $tableBody }) {
+  constructor({ url, $receiveInput, $receiveButton, $tableBody, today }) {
     this.url = url;
     this.$receiveInput = $receiveInput;
     this.$receiveButton = $receiveButton;
     this.$tableBody = $tableBody;
     this.tickerCode = '';
+    this.today = today;
     this.bizDate = '';
     this.scrollTimer = null;
     this.initEvent();
@@ -20,7 +21,7 @@ class DailyPriceView {
 
   async enterCodeAndClickHandler() {
     this.tickerCode = this.$receiveInput.value;
-    this.bizDate = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+    this.bizDate = this.today;
     const dailyPriceArray = await getResponseJsonUrl(`${this.url}&code=${this.tickerCode}&bizdate=${this.bizDate}`);
     this.updateLastDate(dailyPriceArray);
     this.$tableBody.innerHTML = this.makeTemplate(dailyPriceArray);
