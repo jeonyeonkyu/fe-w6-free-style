@@ -1,5 +1,4 @@
 import _ from './util.js';
-import { delay } from './serviceUtil.js';
 
 class TitleView {
   constructor({ url, $receiveInput, $receiveButton, $tickerCode, $name, $price, $gap }) {
@@ -14,7 +13,7 @@ class TitleView {
   }
 
   init() {
-    window['responseJsonp'] = this.responseJsonp.bind(this);
+    window['titleJsonp'] = this.responseJsonp.bind(this);
     this.initEvent();
   }
 
@@ -26,7 +25,7 @@ class TitleView {
     this.requestJsonp(this.url, this.$receiveInput.value.trim());
   }
 
-  requestJsonp(url, word, callbackName = 'responseJsonp') {
+  requestJsonp(url, word, callbackName = 'titleJsonp') {
     const script = document.createElement('script');
     script.src = `${url}?_callback=${callbackName}&query=SERVICE_ITEM%3A${word}`;
     document.body.append(script);
