@@ -39,7 +39,6 @@ class SearchBarView {
   }
 
   responseJsonp({ items }) {
-    console.log(items[0])
     const stocksArray = items[0].filter(infoArray => /[0-9]/g.test(infoArray[0]) && infoArray[0][0].length === 6);
     this.suggestionData = stocksArray.map(infoArray => {
       const [code, name] = [...infoArray[0], ...infoArray[1]];
@@ -50,15 +49,18 @@ class SearchBarView {
   createElement() {
     return _.genEl('DIV', {
       classNames: ['suggestion'],
-      // attributes: { hidden: true },
     });
   }
 
   makeTemplate(dataArray, word) {
     const stockDataTemplate = `${dataArray.map(item => {
       return `<li>
-                <span class="ticker_code">${item.code}</span>
-                <span>${item.name.replace(word, `<span class="red">${word}</span>`)}</span>
+                <span class="ticker_code">
+                 ${item.code.replace(word, `<span class="red">${word}</span>`)}
+                </span>
+                <span>
+                 ${item.name.replace(word, `<span class="red">${word}</span>`)}
+                </span>
               </li>`;
     }).join('')}`;
 
