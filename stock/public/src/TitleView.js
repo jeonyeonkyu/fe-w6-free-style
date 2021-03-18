@@ -1,10 +1,10 @@
 import _ from './util.js';
+import { attrMutationObserver } from './serviceUtil.js';
 
 class TitleView {
-  constructor({ url, $receiveInput, $receiveButton, $tickerCode, $name, $price, $gap }) {
+  constructor({ url, $stockInput, $tickerCode, $name, $price, $gap }) {
     this.url = url;
-    this.$receiveInput = $receiveInput;
-    this.$receiveButton = $receiveButton;
+    this.$stockInput = $stockInput;
     this.$tickerCode = $tickerCode;
     this.$name = $name;
     this.$price = $price;
@@ -14,15 +14,7 @@ class TitleView {
 
   init() {
     window['titleJsonp'] = this.responseJsonp.bind(this);
-    this.initEvent();
-  }
-
-  initEvent() {
-    _.on(this.$receiveButton, 'click', this.enterCodeAndClickHandler.bind(this));
-  }
-
-  enterCodeAndClickHandler() {
-    this.requestJsonp(this.url, this.$receiveInput.value.trim());
+    attrMutationObserver(this.$stockInput, this.mutationHandler.bind(this));
   }
 
   requestJsonp(url, word, callbackName = 'titleJsonp') {
@@ -46,6 +38,11 @@ class TitleView {
     const gapTemplate = `<span class="${color}"><span>${fluctuationRate}${Math.abs(comparison)}</span></span> 
                          <span class="${color}"><span>${percent}</span><span>%</span></span>`;
     this.$gap.innerHTML = gapTemplate;
+  }
+
+  mutationHandler(mutations) {
+    const stockCode = mutations[0].target.dataset.stockCode.trim();
+    this.requestJsonp(this.url, stockCode);
   }
 }
 

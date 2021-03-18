@@ -1,38 +1,41 @@
 import _ from './util.js';
-import { getResponseJsonUrl } from './serviceUtil.js';
+import { getResponseJsonUrl, attrMutationObserver } from './serviceUtil.js';
 
 class DailyPriceView {
-  constructor({ url, $receiveInput, $receiveButton, $tableBody, today }) {
+  constructor({ url, $stockInput, $tableBody, today }) {
     this.url = url;
-    this.$receiveInput = $receiveInput;
-    this.$receiveButton = $receiveButton;
+    this.$stockInput = $stockInput;
     this.$tableBody = $tableBody;
-    this.tickerCode = '';
+    this.stockCode = '';
     this.today = today;
     this.bizDate = '';
     this.scrollTimer = null;
+    this.init();
+  }
+
+  init() {
+    attrMutationObserver(this.$stockInput, this.mutationHandler.bind(this));
     this.initEvent();
   }
 
   initEvent() {
-    _.on(this.$receiveButton, 'click', this.enterCodeAndClickHandler.bind(this));
     _.on(document, 'scroll', this.infinityScrollHandler.bind(this));
   }
 
-  async enterCodeAndClickHandler() {
-    this.tickerCode = this.$receiveInput.value;
+  async mutationHandler(mutations) {
+    this.stockCode = mutations[0].target.dataset.stockCode.trim();
     this.bizDate = this.today;
-    const dailyPriceArray = await getResponseJsonUrl(`${this.url}&code=${this.tickerCode}&bizdate=${this.bizDate}`);
+    const dailyPriceArray = await getResponseJsonUrl(`${this.url}&code=${this.stockCode}&bizdate=${this.bizDate}`);
     this.updateLastDate(dailyPriceArray);
     this.$tableBody.innerHTML = this.makeTemplate(dailyPriceArray);
   }
 
   infinityScrollHandler() {
-    if (!this.tickerCode) return;
+    if (!this.stockCode) return;
     if (this.scrollTimer) clearTimeout(this.scrollTimer);
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
       this.scrollTimer = setTimeout(async function () {
-        const dailyPriceArray = await getResponseJsonUrl(`${this.url}&code=${this.tickerCode}&bizdate=${this.bizDate}`);
+        const dailyPriceArray = await getResponseJsonUrl(`${this.url}&code=${this.stockCode}&bizdate=${this.bizDate}`);
         this.$tableBody.insertAdjacentHTML('beforeend', this.makeTemplate(dailyPriceArray));
         this.updateLastDate(dailyPriceArray);
       }.bind(this), 500);
