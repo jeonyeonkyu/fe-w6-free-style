@@ -17,11 +17,15 @@ const load = () => {
 
   const title = {
     url: 'https://polling.finance.naver.com/api/realtime',
+    imgUrl: 'https://ssl.pstatic.net/imgfinance/chart',
     $stockInput: receive.$stockInput,
     $tickerCode: _.$('.title__info--code'),
     $name: _.$('.title__info--name'),
     $price: _.$('.title__info--price'),
-    $gap: _.$('.title__info--gap')
+    $gap: _.$('.title__info--gap'),
+    $today: _.$('.title__info--today'),
+    $img: _.$('.title__line_chart--img'),
+    today: today
   }
   const titleView = new TitleView(title);
 
@@ -45,6 +49,7 @@ const load = () => {
   const search = {
     url: 'https://ac.finance.naver.com/ac?q_enc=euc-kr&st=111&frm=stock&r_format=json&r_enc=euc-kr&r_unicode=0&t_koreng=1&r_lt=111',
     $receiveInput: receive.$receiveInput,
+    $stockInput: receive.$stockInput,
     $searchBar: _.$('.search_bar')
   }
   const searchBarView = new SearchBarView(search);
