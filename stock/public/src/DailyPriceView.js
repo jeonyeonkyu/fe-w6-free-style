@@ -53,7 +53,7 @@ class DailyPriceView {
       const color = change_val >= 0 ? 'red' : 'blue';
       const fluctuationRate = change_val >= 0 ? '▲' : '▼';
       return acc + `<tr>
-                      <td>${bizdate}</td>
+                      <td>${bizdate.slice(2).replace(/(.{2})(.{2})/, '$1-$2-')}</td>
                       <td>${close_val.toLocaleString('ko-KR')}</td >
                       <td class="${color}">${fluctuationRate}${change_val}</td>
                       <td>${acc_quant}</td>
