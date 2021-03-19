@@ -5,7 +5,7 @@ function splitData(rawData) {
   const volumes = [];
   let prevVolume = 0;
   for (let i = 0; i < rawData.length; i++) {
-    categoryData.push(rawData[i].splice(0, 1)[0]);
+    categoryData.push(rawData[i].splice(0, 1)[0].slice(2).replace(/(.{2})(.{2})/, '$1-$2-'));
     values.push([rawData[i][0], rawData[i][3], rawData[i][2], rawData[i][1], rawData[i][4]]);
     volumes.push([i, rawData[i][4], rawData[i][4] > prevVolume ? -1 : 1]);
     prevVolume = rawData[i][4];
