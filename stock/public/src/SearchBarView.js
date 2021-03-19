@@ -1,10 +1,11 @@
-import { delay } from "./serviceUtil.js";
+import { delay, attrMutationObserver } from "./serviceUtil.js";
 import _ from "./util.js";
 
 class SearchBarView {
-  constructor({ url, $receiveInput, $searchBar }) {
+  constructor({ url, $receiveInput, $stockInput, $searchBar }) {
     this.url = url;
     this.$receiveInput = $receiveInput;
+    this.$stockInput = $stockInput;
     this.$searchBar = $searchBar;
     this.$suggestion;
     this.suggestionData = [];
@@ -14,6 +15,7 @@ class SearchBarView {
 
   init() {
     window['searchBarJsonp'] = this.responseJsonp.bind(this);
+    attrMutationObserver(this.$stockInput, () => { _.hide(this.$suggestion) });
     this.initEvent();
 
     this.$suggestion = this.createElement();
@@ -25,6 +27,7 @@ class SearchBarView {
   }
 
   inputSuggestionHandler({ target: { value } }) {
+    if (this.$suggestion.hidden) _.show(this.$suggestion);
     if (this.typingTimer) clearTimeout(this.typingTimer);
     this.typingTimer = setTimeout(async function () {
       await delay(this.requestJsonp(this.url, value), 300);
@@ -59,7 +62,7 @@ class SearchBarView {
                  ${item.code.replace(word, `<span class="red">${word}</span>`)}
                 </span>
                 <span>
-                 ${item.name.replace(word, `<span class="red">${word}</span>`)}
+                 ${item.name.replace(new RegExp(word, 'i'), `<span class="red">${word.toUpperCase()}</span>`)}
                 </span>
               </li>`;
     }).join('')}`;
