@@ -15,6 +15,7 @@ class TickerCodeView {
 
   registerStockCodeClickHandler() {
     this.$stockInput.dataset.stockCode = _.$All('.ticker_code')[0].innerText.trim();
+    this.$receiveInput.value = '';
   }
 
   registerStockCodeEnterHandler({ keyCode }) {
