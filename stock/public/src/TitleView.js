@@ -2,13 +2,17 @@ import _ from './util.js';
 import { attrMutationObserver } from './serviceUtil.js';
 
 class TitleView {
-  constructor({ url, $stockInput, $tickerCode, $name, $price, $gap }) {
+  constructor({ url, imgUrl, $stockInput, $tickerCode, $name, $price, $gap, $today, $img, today }) {
     this.url = url;
+    this.imgUrl = imgUrl;
     this.$stockInput = $stockInput;
     this.$tickerCode = $tickerCode;
     this.$name = $name;
     this.$price = $price;
     this.$gap = $gap;
+    this.$today = $today;
+    this.$img = $img;
+    this.today = today;
     this.init();
   }
 
@@ -27,10 +31,12 @@ class TitleView {
     this.renderTitle(datas[0]);
   }
 
-  renderTitle({ nm, nv, pcv, mt }) {
+  renderTitle({ nm, nv, pcv, mt, cd }) {
     this.$name.innerHTML = nm;
     this.$tickerCode.innerHTML = mt === '1' ? 'KOSPI' : 'KOSDAQ';
     this.$price.innerHTML = nv.toLocaleString('ko-KR');
+    this.$today.innerHTML = `${this.today.slice(4).replace(/(.{2})/, "$1.")} 실시간`;
+    this.$img.src = `${this.imgUrl}/item/area/day/${cd}.png?sidcode=${Date.now()}`;
     const comparison = nv - pcv;
     const color = comparison >= 0 ? 'red' : 'blue';
     const fluctuationRate = comparison >= 0 ? '▲' : '▼';
