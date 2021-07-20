@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/util.css">
+  <link rel="stylesheet" href="css/main.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="entirety">
+    <header>
+      <div>N 증권</div>
+      <div> &nbsp;&nbsp;국내증시</div>
+      <div class="search_bar">
+        <input class="receive_input" type="text" placeholder="종목 입력">
+        <input class="_stock_input" type="text" data-stock-code='' hidden>
+        <button class="receive_button">
+          검색
+        </button>
+      </div>
+      <div>MY</div>
+    </header>
+
+    <section class="title">
+      <div class="title__info">
+        <div class="title__info--code">
+          KOSPI
+        </div>
+        <div class="title__info--name">
+          코스피
+        </div>
+        <div class="title__info--price">
+
+        </div>
+        <div class="title__info--gap">
+        </div>
+        <div class="title__info--today">
+        </div>
+      </div>
+
+      <div class="title__line_chart">
+        <img class="title__line_chart--img" src="" alt="">
+      </div>
+    </section>
+
+    <section></section>
+    <section></section>
+
+    <section class="box_chart">
+      <div>
+        <ul class="box_chart__term">
+          <li><input type="radio" name="rod_term" id="day" checked hidden><label id="day">일봉</label></li>
+          <li><input type="radio" name="rod_term" id="week" hidden><label id="week">주봉</label></li>
+          <li><input type="radio" name="rod_term" id="month" hidden><label id="month">월봉</label></li>
+        </ul>
+      </div>
+      <div class="box_chart__chart"> </div>
+    </section>
+
+    <section class="daily_price">
+      <h2>일별시세</h2>
+      <table class="table">
+        <thead>
+          <tr class="table__head">
+            <th>날짜</th>
+            <th>종가</th>
+            <th>전일비</th>
+            <th>거래량</th>
+          </tr>
+        </thead>
+        <tbody class="table__body"> </tbody>
+      </table>
+    </section>
+
+  </div>
+</body>
+
+<script src="main_bundle.js"></script>
+
+</html>

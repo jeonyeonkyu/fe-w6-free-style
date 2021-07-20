@@ -1,0 +1,141 @@
+body {
+  background: #f3f3f3;
+}
+
+.entirety {
+  width: 828px;
+  margin: 100px auto;
+  border: 1px solid rgb(202, 202, 202);
+  background-color: #fff;
+  box-shadow: 0px 0px 10px 1px rgb(202, 202, 202);
+  > * {
+    padding: 15px;
+  }
+}
+
+header {
+  display: flex;
+  height: 30px;
+  font-weight: 700;
+  > :nth-child(1) {
+    width: 10%;
+    border-right: 1px solid gray;
+    font-size: 20px;
+  }
+  > :nth-child(2) {
+    width: 55%;
+    font-size: 20px;
+  }
+  > :nth-child(3) {
+    width: 30%;
+    font-size: 20px;
+  }
+  > :nth-child(4) {
+    width: 5%;
+    font-size: 20px;
+  }
+}
+
+.title {
+  display: flex;
+  height: 300px;
+  border-top: 5px solid rgb(112, 112, 112);
+  &__info {
+    width: 200px;
+    &--code {
+      font-size: 14px;
+      font-weight: 700;
+    }
+    &--name {
+      margin-top: 10px;
+      font-size: 18px;
+    }
+    &--price {
+      margin-top: 20px;
+      font-size: 26px;
+    }
+    &--gap {
+      margin-top: 30px;
+    }
+    &--today {
+      margin-top: 50px;
+      color: gray;
+    }
+  }
+
+  &__line_chart {
+    width: 100%;
+    text-align: center;
+    place-self: flex-end;
+  }
+}
+
+.box_chart {
+  border-top: 5px solid rgb(200, 200, 200);
+  &__term {
+    display: flex;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #000;
+    > li {
+      > label {
+        padding: 5px 10px;
+        margin: 0 10px 0 0;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      > input[type="radio"]:checked + label {
+        background: #445f9a;
+        color: #fff;
+      }
+    }
+  }
+  &__chart {
+    height: 500px;
+  }
+}
+
+.daily_price {
+  border-top: 5px solid rgb(200, 200, 200);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align-last: end;
+  border-bottom: 2px solid #000;
+  &__head {
+    text-align: left;
+    border-bottom: 2px solid #000;
+    > th {
+      font-size: 20px;
+    }
+  }
+  &__body {
+    > tr {
+      height: 30px;
+      border-bottom: 1px solid lightgray;
+      > td {
+        font-weight: 600;
+        font-size: 20px;
+      }
+      :first-child {
+        font-weight: 400;
+      }
+    }
+  }
+}
+
+.suggestion {
+  position: relative;
+  font-size: 16px;
+  background: #fff;
+  border: 1px solid gray;
+  width: 224px;
+}
+
+.red {
+  color: red;
+}
+.blue {
+  color: blue;
+}
